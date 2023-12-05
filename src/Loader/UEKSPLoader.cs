@@ -1,7 +1,7 @@
 ﻿namespace UnityExplorer
 {
     [KSPAddon(KSPAddon.Startup.Instantly, false)]
-    public class UEKSPLoader : MonoBehaviour
+    public class UnityExplorerKSPLoader : MonoBehaviour
     {
         void Start()
         {

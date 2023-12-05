@@ -11,8 +11,11 @@
 This is a fork of [UnityExplorer](https://github.com/sinai-dev/UnityExplorer), modified to work as a standalone Kerbal Space Program plugin : 
 - Uses Harmony instead of HarmonyX
 - Uses a forked version of UniverseLib wich also uses Harmony instead of HarmonyX
-- All dependencies, and notably `Mono.Cecil` are packed in the assembly to avoid conflicts with the outdated `Mono.Cecil` bundled with KSP.
+- All dependencies, and notably `Mono.Cecil` are IL-packed and internalized in the assembly to avoid conflicts with the outdated `Mono.Cecil` bundled with KSP.
 - Removed unused code (IL2CPP support, bepinex/melon loaders...)
+
+### Dependencies
+- [HarmonyKSP](https://github.com/KSPModdingLibs/HarmonyKSP)
 
 # Features
 

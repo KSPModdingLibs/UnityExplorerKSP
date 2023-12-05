@@ -5,15 +5,6 @@ using UnityExplorer.Inspectors;
 using UniverseLib.UI;
 using UniverseLib.UI.Models;
 using UniverseLib.UI.ObjectPool;
-#if CPP
-#if INTEROP
-using Il2CppInterop.Runtime;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-#else
-using UnhollowerRuntimeLib;
-using UnhollowerBaseLib;
-#endif
-#endif
 
 namespace UnityExplorer.UI.Widgets
 {
@@ -154,11 +145,7 @@ namespace UnityExplorer.UI.Widgets
             UnityEngine.Object.DontDestroyOnLoad(AudioPlayerObject);
             AudioPlayerObject.hideFlags = HideFlags.HideAndDontSave;
             AudioPlayerObject.transform.position = new(int.MinValue, int.MinValue); // move it as far away as possible
-#if CPP
-            Source = AudioPlayerObject.AddComponent(Il2CppType.Of<AudioSource>()).TryCast<AudioSource>();
-#else
             Source = AudioPlayerObject.AddComponent<AudioSource>();
-#endif
             AudioPlayerObject.AddComponent<AudioListener>();
         }
 

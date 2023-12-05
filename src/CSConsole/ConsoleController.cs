@@ -45,11 +45,7 @@ namespace UnityExplorer.CSConsole
             "System.Collections.Generic",
             "System.Reflection",
             "UnityEngine",
-            "UniverseLib",
-#if CPP
-            "UnhollowerBaseLib",
-            "UnhollowerRuntimeLib",
-#endif
+            "UniverseLib"
         };
 
         const int CSCONSOLE_LINEHEIGHT = 18;

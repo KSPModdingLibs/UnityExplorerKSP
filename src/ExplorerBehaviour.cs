@@ -1,11 +1,4 @@
 ﻿using UnityExplorer.UI;
-#if CPP
-#if UNHOLLOWER
-using UnhollowerRuntimeLib;
-#else
-using Il2CppInterop.Runtime.Injection;
-#endif
-#endif
 
 namespace UnityExplorer
 {
@@ -13,16 +6,8 @@ namespace UnityExplorer
     {
         internal static ExplorerBehaviour Instance { get; private set; }
 
-#if CPP
-        public ExplorerBehaviour(System.IntPtr ptr) : base(ptr) { }
-#endif
-
         internal static void Setup()
         {
-#if CPP
-            ClassInjector.RegisterTypeInIl2Cpp<ExplorerBehaviour>();
-#endif
-
             GameObject obj = new("ExplorerBehaviour");
             DontDestroyOnLoad(obj);
             obj.hideFlags = HideFlags.HideAndDontSave;

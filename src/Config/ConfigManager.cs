@@ -52,9 +52,7 @@ namespace UnityExplorer.Config
             Handler.LoadConfig();
             InternalHandler.LoadConfig();
 
-#if STANDALONE
             Loader.Standalone.ExplorerEditorBehaviour.Instance?.LoadConfigs();
-#endif
         }
 
         internal static void RegisterConfigElement<T>(ConfigElement<T> configElement)

@@ -1,12 +1,6 @@
 ﻿using HarmonyLib;
 using UniverseLib.UI;
 using UniverseLib.UI.Models;
-#if UNHOLLOWER
-using IL2CPPUtils = UnhollowerBaseLib.UnhollowerUtils;
-#endif
-#if INTEROP
-using IL2CPPUtils = Il2CppInterop.Common.Il2CppInteropUtils;
-#endif
 
 namespace UnityExplorer.UI.Widgets
 {
@@ -95,10 +89,6 @@ namespace UnityExplorer.UI.Widgets
             try
             {
                 MethodInfo target = typeof(Time).GetProperty("timeScale").GetSetMethod();
-#if CPP
-                if (IL2CPPUtils.GetIl2CppMethodInfoPointerFieldForGeneratedMethod(target) == null)
-                    return;
-#endif
                 ExplorerCore.Harmony.Patch(target,
                     prefix: new(AccessTools.Method(typeof(TimeScaleWidget), nameof(Prefix_Time_set_timeScale))));
             }

@@ -35,3 +35,4 @@ using UnityExplorer;
 [assembly: AssemblyFileVersion(ExplorerCore.VERSION)]
 [assembly: KSPAssembly("UnityExplorerKSP", 1, 0)]
 [assembly: KSPAssemblyDependency("UniverseLibKSP", 1, 0)]
+[assembly: KSPAssemblyDependency("HarmonyKSP", 1, 0)]

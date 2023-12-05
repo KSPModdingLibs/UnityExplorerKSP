@@ -1,6 +1,4 @@
-﻿#if MONO
-
-namespace UnityExplorer.Runtime
+﻿namespace UnityExplorer.Runtime
 {
     public class MonoHelper : UERuntimeHelper
     {
@@ -13,5 +11,3 @@ namespace UnityExplorer.Runtime
              => ExplorerCore.LogUnity(condition, type);
     }
 }
-
-#endif

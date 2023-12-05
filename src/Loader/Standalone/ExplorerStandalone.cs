@@ -1,5 +1,4 @@
-﻿#if STANDALONE
-using HarmonyLib;
+﻿using HarmonyLib;
 using System;
 using System.IO;
 using System.Reflection;
@@ -8,9 +7,6 @@ using UnityExplorer.Config;
 using UnityEngine.EventSystems;
 using UniverseLib.Input;
 using UnityExplorer.Loader.Standalone;
-#if CPP
-using UnhollowerRuntimeLib;
-#endif
 
 namespace UnityExplorer
 {
@@ -103,4 +99,3 @@ namespace UnityExplorer
         }
     }
 }
-#endif

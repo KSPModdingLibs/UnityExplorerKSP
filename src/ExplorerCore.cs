@@ -25,7 +25,7 @@ namespace UnityExplorer
 
         public static IExplorerLoader Loader { get; private set; }
         public static string ExplorerFolder => Path.Combine(Loader.ExplorerFolderDestination, Loader.ExplorerFolderName);
-        public const string DEFAULT_EXPLORER_FOLDER_NAME = "sinai-dev-UnityExplorer";
+        public const string DEFAULT_EXPLORER_FOLDER_NAME = "PluginData";
 
         public static HarmonyLib.Harmony Harmony { get; } = new HarmonyLib.Harmony(GUID);
 
@@ -41,7 +41,6 @@ namespace UnityExplorer
 
             Log($"{NAME} {VERSION} initializing...");
 
-            CheckLegacyExplorerFolder();
             Directory.CreateDirectory(ExplorerFolder);
             ConfigManager.Init(Loader.ConfigHandler);
 
@@ -123,64 +122,6 @@ namespace UnityExplorer
                 case LogType.Exception:
                     Loader.OnLogError(log);
                     break;
-            }
-        }
-
-        #endregion
-
-
-        #region LEGACY FOLDER MIGRATION
-
-        // Can be removed eventually. For migration from <4.7.0
-        static void CheckLegacyExplorerFolder()
-        {
-            string legacyPath = Path.Combine(Loader.ExplorerFolderDestination, "UnityExplorer");
-            if (Directory.Exists(legacyPath))
-            {
-                LogWarning($"Attempting to migrate old 'UnityExplorer/' folder to 'sinai-dev-UnityExplorer/'...");
-
-                // If new folder doesn't exist yet, let's just use Move().
-                if (!Directory.Exists(ExplorerFolder))
-                {
-                    try
-                    {
-                        Directory.Move(legacyPath, ExplorerFolder);
-                        Log("Migrated successfully.");
-                    }
-                    catch (Exception ex)
-                    {
-                        LogWarning($"Exception migrating folder: {ex}");
-                    }
-                }
-                else // We have to merge
-                {
-                    try
-                    {
-                        CopyAll(new(legacyPath), new(ExplorerFolder));
-                        Directory.Delete(legacyPath, true);
-                        Log("Migrated successfully.");
-                    }
-                    catch (Exception ex)
-                    {
-                        LogWarning($"Exception migrating folder: {ex}");
-                    }
-                }
-            }
-        }
-
-        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
-        {
-            Directory.CreateDirectory(target.FullName);
-
-            // Copy each file into it's new directory.
-            foreach (FileInfo fi in source.GetFiles())
-                fi.MoveTo(Path.Combine(target.ToString(), fi.Name));
-
-            // Copy each subdirectory using recursion.
-            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
-            {
-                DirectoryInfo nextTargetSubDir = target.CreateSubdirectory(diSourceSubDir.Name);
-                CopyAll(diSourceSubDir, nextTargetSubDir);
             }
         }
 

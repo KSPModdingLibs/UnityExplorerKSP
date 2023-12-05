@@ -1,12 +1,6 @@
 ﻿using UniverseLib.Input;
 using UniverseLib.UI;
 using UniverseLib.UI.Models;
-#if UNHOLLOWER
-using UnhollowerRuntimeLib;
-#endif
-#if INTEROP
-using Il2CppInterop.Runtime.Injection;
-#endif
 
 namespace UnityExplorer.UI.Panels
 {
@@ -327,15 +321,6 @@ namespace UnityExplorer.UI.Panels
 
     internal class FreeCamBehaviour : MonoBehaviour
     {
-#if CPP
-        static FreeCamBehaviour()
-        {
-            ClassInjector.RegisterTypeInIl2Cpp<FreeCamBehaviour>();
-        }
-
-        public FreeCamBehaviour(IntPtr ptr) : base(ptr) { }
-#endif
-
         internal void Update()
         {
             if (FreeCamPanel.inFreeCamMode)

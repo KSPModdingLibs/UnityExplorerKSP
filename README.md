@@ -5,83 +5,14 @@
 <p align="center">
   🔍 An in-game UI for exploring, debugging and modifying Unity games.
 </p>
-<p align="center">
-  ✔️ Supports most Unity versions from 5.2 to 2021+ (IL2CPP and Mono).
-</p>
-<p align="center">
-  ✨ Powered by <a href="https://github.com/sinai-dev/UniverseLib">UniverseLib</a>
-</p>
 
-# Releases  [![](https://img.shields.io/github/downloads/sinai-dev/UnityExplorer/total.svg)](../../releases)
+# UnityExplorerKSP
 
-[![](https://img.shields.io/github/release/sinai-dev/UnityExplorer.svg?label=version)](../../releases/latest) [![](https://img.shields.io/github/workflow/status/sinai-dev/UnityExplorer/Build%20UnityExplorer)](https://github.com/sinai-dev/UnityExplorer/actions) [![](https://img.shields.io/github/downloads/sinai-dev/UnityExplorer/latest/total.svg)](../../releases/latest)
-
-⚡ Thunderstore releases: [BepInEx Mono](https://thunderstore.io/package/sinai-dev/UnityExplorer) | [BepInEx IL2CPP](https://gtfo.thunderstore.io/package/sinai-dev/UnityExplorer_IL2CPP) | [MelonLoader IL2CPP](https://boneworks.thunderstore.io/package/sinai-dev/UnityExplorer_IL2CPP_ML)
-
-## Release schedule
-
-Releases will be posted at most once per week, generally on weekends. 
-
-Nightly builds can be found [here](https://github.com/sinai-dev/UnityExplorer/actions).
-
-## BepInEx
-
-| Release | IL2CPP | Mono |
-| ------- | ------ | ---- |
-| BIE 6.X | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.BepInEx.IL2CPP.zip) | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.BepInEx6.Mono.zip) |
-| BIE 6.X (CoreCLR) | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.BepInEx.IL2CPP.CoreCLR.zip) | ✖ |
-| BIE 5.X | ✖️ n/a | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.BepInEx5.Mono.zip) |
-
-1. Unzip the release file into a folder
-2. Take the `plugins/sinai-dev-UnityExplorer` folder and place it in `BepInEx/plugins/`
-
-<i>Note: BepInEx 6 is obtainable via [builds.bepinex.dev](https://builds.bepinex.dev/projects/bepinex_be)</i>
-
-## MelonLoader
-
-| Release | IL2CPP | Mono |
-| ------- | ------ | ---- |
-| ML 0.5  | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.MelonLoader.IL2CPP.zip) | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.MelonLoader.Mono.zip) | 
-| ML 0.6  | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.MelonLoader.IL2CPP.net6preview.zip) | ✖️ |
-
-1. Unzip the release file into a folder
-2. Copy the DLL inside the `Mods` folder into your MelonLoader `Mods` folder
-3. Copy all of the DLLs inside the `UserLibs` folder into your MelonLoader `UserLibs` folder
-
-## Standalone
-
-| IL2CPP | Mono |
-| ------ | ---- |
-| ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.Standalone.IL2CPP.zip) | ✅ [link](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.Standalone.Mono.zip) | 
-
-The standalone release can be used with any injector or loader of your choice, but it requires you to load the dependencies manually.
-
-1. Ensure the required libs are loaded - UniverseLib, HarmonyX and MonoMod. Take them from the [`UnityExplorer.Editor`](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.Editor.zip) release if you need them.
-2. For IL2CPP, load Il2CppAssemblyUnhollower and start an [Il2CppAssemblyUnhollower runtime](https://github.com/knah/Il2CppAssemblyUnhollower#required-external-setup)
-2. Load the UnityExplorer DLL
-3. Create an instance of Unity Explorer with `UnityExplorer.ExplorerStandalone.CreateInstance();`
-4. Optionally subscribe to the `ExplorerStandalone.OnLog` event to handle logging if you wish
-
-## Unity Editor
-
-1. Download the [`UnityExplorer.Editor`](https://github.com/sinai-dev/UnityExplorer/releases/latest/download/UnityExplorer.Editor.zip) release.
-2. Install the package, either by using the Package Manager and importing the `package.json` file, or by manually dragging the folder into your `Assets` folder.
-3. Drag the `Runtime/UnityExplorer` prefab into your scene, or create a GameObject and add the `Explorer Editor Behaviour` script to it.
-
-# Common issues and solutions
-
-Although UnityExplorer should work out of the box for most Unity games, in some cases you may need to tweak the settings for it to work properly.
-
-To adjust the settings, open the config file:
-* BepInEx: `BepInEx\config\com.sinai.unityexplorer.cfg`
-* MelonLoader: `UserData\MelonPreferences.cfg`
-* Standalone: `sinai-dev-UnityExplorer\config.cfg`
-
-Try adjusting the following settings and see if it fixes your issues:
-* `Startup_Delay_Time` - increase to 5-10 seconds (or more as needed), can fix issues with UnityExplorer being destroyed or corrupted during startup.
-* `Disable_EventSystem_Override` - if input is not working properly, try setting this to `true`.
-
-If these fixes do not work, please create an issue in this repo and I'll do my best to look into it.
+This is a fork of [UnityExplorer](https://github.com/sinai-dev/UnityExplorer), modified to work as a standalone Kerbal Space Program plugin : 
+- Uses Harmony instead of HarmonyX
+- Uses a forked version of UniverseLib wich also uses Harmony instead of HarmonyX
+- All dependencies, and notably `Mono.Cecil` are packed in the assembly to avoid conflicts with the outdated `Mono.Cecil` bundled with KSP.
+- Removed unused code (IL2CPP support, bepinex/melon loaders...)
 
 # Features
 
@@ -164,15 +95,6 @@ The inspector is used to see detailed information on objects of any type and man
 ### Settings
 
 * You can change the settings via the "Options" tab of the menu, or directly from the config file.
-  * BepInEx: `BepInEx\config\com.sinai.unityexplorer.cfg`
-  * MelonLoader: `UserData\MelonPreferences.cfg`
-  * Standalone `{DLL_location}\sinai-dev-UnityExplorer\config.cfg`
-
-# Building
-
-1. Run the `build.ps1` powershell script to build UnityExplorer. Releases are found in the `Release` folder.
-
-Building individual configurations from your IDE is fine, though note that the intial build process builds into `Release/<version>/...` instead of the subfolders that the powershell script uses. Batch building is not currently supported with the project.
 
 # Acknowledgments
 

@@ -16,10 +16,10 @@
     <!-- ~~~~~ CONFIGURATIONS ~~~~~ -->
     <!-- STANDALONE Mono -->
     <PropertyGroup>
-        <TargetFramework>net35</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
         <OutputPath>..\Release\</OutputPath>
         <DefineConstants>MONO,STANDALONE</DefineConstants>
-        <AssemblyName>UnityExplorerStandalone</AssemblyName>
+        <AssemblyName>UnityExplorerKSP</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="ILRepack.Lib.MSBuild.Task" Version="2.0.18.2" />
@@ -31,15 +31,7 @@
 			<HintPath>..\lib_packed\mcs.dll</HintPath>
 			<Private>True</Private>
 		</Reference>
-		<Reference Include="0Harmony">
-			<HintPath>..\lib_packed\0Harmony.dll</HintPath>
-			<Private>True</Private>
-		</Reference>
-		<Reference Include="UniverseLib.Mono">
-			<HintPath>..\lib_packed\UniverseLib.Mono.dll</HintPath>
-			<Private>True</Private>
-		</Reference>
-		<Reference Include="Tomlet">
+	    <Reference Include="Tomlet">
 			<HintPath>..\lib_packed\Tomlet.dll</HintPath>
 			<Private>True</Private>
 		</Reference>
@@ -67,6 +59,15 @@
 			<HintPath>..\lib_packed\Mono.Cecil.Rocks.dll</HintPath>
 			<Private>True</Private>
 		</Reference>
+
+	    <Reference Include="UniverseLibKSP">
+		    <HintPath>..\lib_notpacked\UniverseLibKSP.dll</HintPath>
+		    <Private>True</Private>
+	    </Reference>
+	    <Reference Include="0Harmony">
+		    <HintPath>..\lib_notpacked\0Harmony.dll</HintPath>
+		    <Private>True</Private>
+	    </Reference>
 	    <Reference Include="UnityEngine">
             <HintPath>..\lib_notpacked\UnityEngine.dll</HintPath>
             <Private>True</Private>
@@ -75,5 +76,9 @@
             <HintPath>..\lib_notpacked\UnityEngine.UI.dll</HintPath>
             <Private>True</Private>
         </Reference>
+		<Reference Include="Assembly-CSharp">
+			<HintPath>..\lib_notpacked\Assembly-CSharp.dll</HintPath>
+			<Private>True</Private>
+		</Reference>
     </ItemGroup>
 </Project>

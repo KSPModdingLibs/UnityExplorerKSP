@@ -10,11 +10,7 @@ namespace UnityExplorer.Runtime
 
         public static void Init()
         {
-#if CPP
-            Instance = new Il2CppHelper();
-#else
             Instance = new MonoHelper();
-#endif
             Instance.SetupEvents();
 
             LoadBlacklistString(ConfigManager.Reflection_Signature_Blacklist.Value);
